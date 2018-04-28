@@ -1,0 +1,9 @@
+assets:
+- id: menufont
+  path: ./assets/fonts/Beware of the Zombies.ttf
+  type: font
+  description: empty
+- id: testimage
+  path: ./assets/lips.png
+  type: image
+  description: empty
