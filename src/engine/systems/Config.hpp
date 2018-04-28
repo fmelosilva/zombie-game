@@ -1,13 +1,13 @@
 #ifndef CONFIG_H_DEFINED
 #define CONFIG_H_DEFINED
 
-#include <yaml-cpp/yaml.h>
 #include <string>
+#include "yaml-cpp/yaml.h"
 
 class Config
 {
-public:
-	bool fromFile(std::string filename);
+  public:
+	void fromFile(std::string path);
 
 	bool has(std::string key);
 
@@ -17,9 +17,8 @@ public:
 
 	int getInt(std::string key);
 
-
-private:
-	std::string filename;
+  private:
+	std::string path;
 	YAML::Node config;
 };
 
