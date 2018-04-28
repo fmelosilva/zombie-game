@@ -1,16 +1,25 @@
 # Zombie - The Game 
 A simple zombie game made with SDL2
 
-# How to Build
-First, install all dependencies. This game uses [CMake](http://www.cmake.org) to support cross-platform building.
+## Building ##
 
-Dependencies:
--------------
-
-Required
+Dependencies
 * [CMake](https://cmake.org/)
-* [SDL2](https://www.libsdl.org/download-2.0.php)
 * [yaml-cpp](https://github.com/jbeder/yaml-cpp)
+* [SDL2](https://www.libsdl.org/)
+* [SDL2_image](https://www.libsdl.org/projects/SDL_image/)
+* [SDL2_mixer](https://www.libsdl.org/projects/SDL_mixer/) 
+* [SDL2_ttf](https://www.libsdl.org/projects/SDL_ttf/) 
 
-Already included in this project
-* [easyloggingpp](https://github.com/muflihun/easyloggingpp)
+
+To build standalone version:
+
+    cmake . && make
+
+
+## Author ##
+
+* [Filipe Melo](https://github.com/fms6)
+
+## License ##
+This game comes under MIT License.
