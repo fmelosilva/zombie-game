@@ -21,5 +21,10 @@ To build standalone version:
 
 * [Filipe Melo](https://github.com/fms6)
 
-## License ##
-This game comes under MIT License.
+## License
+
+This project is licensed under the MIT License - see the [LICENSE.md](LICENSE.md) file for details
+
+## Acknowledgments
+* [Easylogging++](https://github.com/muflihun/easyloggingpp)
+* [Birch Engine](https://github.com/carlbirch/BirchEngine)
