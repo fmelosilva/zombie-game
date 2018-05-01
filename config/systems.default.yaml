@@ -1,0 +1,11 @@
+video:
+  title: Zombie Game
+  x: 0
+  y: 0
+  width: 640
+  height: 480
+  flags: 0
+audio:
+  main volume: 100
+  music volume: 100
+  ambient volume: 100

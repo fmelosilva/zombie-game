@@ -1,46 +1,37 @@
 #include "Video.hpp"
 #include <stdexcept>
+#include <string>
 
-void Video::createWindow(Config *config)
+Video::Video(Config config)
 {
-    SDL_Window *window;
     if (SDL_Init(SDL_INIT_VIDEO) < 0)
-    {
-        LOG(ERROR) << "Unable to initialize video: " + std::string(SDL_GetError());
-        throw std::invalid_argument("Unable to initialize video: " + std::string(SDL_GetError()));
-    }
-    LOG(DEBUG) << "Video initialised.";
+        throw std::runtime_error("Unable to initialize video: " + std::string(SDL_GetError()));
+
+    LOG(DEBUG) << "Video system has been initialised";
+
+    this->config = config;
 
     if (!SDL_SetHint(SDL_HINT_RENDER_SCALE_QUALITY, "1"))
-        LOG(WARNING) << "Linear texture filtering not enabled.";
+        LOG(WARNING) << "Linear texture filtering not enabled";
 
-    window = SDL_CreateWindow(
-        config->get("window_title").c_str(),
-        config->getInt("x_position"),
-        config->getInt("y_position"),
-        config->getInt("width"),
-        config->getInt("height"),
-        config->getInt("flags"));
+    this->window = SDL_CreateWindow(
+        config.get("title").c_str(),
+        config.getInt("x"),
+        config.getInt("y"),
+        config.getInt("width"),
+        config.getInt("height"),
+        config.getInt("flags"));
 
-    if (!window)
-    {
-        LOG(ERROR) << "Window could not be created. SDL_Error: " + std::string(SDL_GetError());
-        throw std::invalid_argument("Window could not be created. SDL_Error: " + std::string(SDL_GetError()));
-    }
+    if (!this->window)
+        throw std::runtime_error("Window could not be created. SDL_Error: " + std::string(SDL_GetError()));
 
-    LOG(DEBUG) << "Window created.";
+    LOG(DEBUG) << "A new window was created";
 
-    SDL_Renderer *renderer = SDL_CreateRenderer(window, -1, SDL_RENDERER_ACCELERATED);
-    if (!renderer)
-    {
-        LOG(ERROR) << "Renderer could not be created! SDL_Error: " << std::string(SDL_GetError());
-        throw std::invalid_argument("Renderer could not be created! SDL_Error: " + std::string(SDL_GetError()));
-    }
+    this->renderer = SDL_CreateRenderer(this->window, -1, SDL_RENDERER_ACCELERATED);
+    SDL_RenderSetLogicalSize(this->renderer, config.getInt("width"), config.getInt("height"));
 
-    SDL_SetRenderDrawColor(renderer, 0, 0, 255, 255);
-
-    this->window = window;
-    this->renderer = renderer;
+    if (!this->renderer)
+        throw std::runtime_error("Renderer could not be created! SDL_Error: " + std::string(SDL_GetError()));
 }
 
 SDL_Renderer *Video::getRenderer()
@@ -50,11 +41,17 @@ SDL_Renderer *Video::getRenderer()
 
 void Video::render(Element *element)
 {
+    SDL_Rect Message_rect;
+    Message_rect.x = 0;  //controls the rect's x coordinate
+    Message_rect.y = 0; // controls the rect's y coordinte
+    Message_rect.w = 300; // controls the width of the rect
+    Message_rect.h = 100; // controls the height of the rect
+
     SDL_RenderCopy(
         this->renderer,
         element->getTexture(),
         NULL,
-        NULL);
+        &Message_rect);
 }
 
 void Video::updateScreen()

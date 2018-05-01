@@ -2,7 +2,7 @@
 #define VIDEO_H_DEFINED
 
 #include <SDL2/SDL.h>
-#include "Config.hpp"
+#include "../utils/Config.hpp"
 #include "../utils/easylogging++.hpp"
 #include "../elements/Element.hpp"
 
@@ -10,8 +10,8 @@
 class Video
 {
   public:
+    Video(Config config);
     ~Video();
-    void createWindow(Config *config);
     SDL_Renderer *getRenderer();
     void render(Element *element);
     void updateScreen();
@@ -19,7 +19,7 @@ class Video
   private:
     SDL_Window *window;
     SDL_Renderer *renderer;
-    Config *window_settings;
+    Config config;
 };
 
 #endif /* VIDEO_H_DEFINED */

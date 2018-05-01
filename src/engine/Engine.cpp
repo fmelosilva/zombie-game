@@ -2,27 +2,33 @@
 
 INITIALIZE_EASYLOGGINGPP
 
-Video *Engine::video = new Video();
+Video *Engine::video = nullptr;
 std::stack<Screen*> *Engine::screens = new std::stack<Screen*>();
 
 Engine::Engine()
 {
 }
 
-int Engine::initEngine()
+void LOG_Init()
 {
     el::Loggers::addFlag(el::LoggingFlag::ColoredTerminalOutput);
     el::Configurations defaultConf;
     defaultConf.setToDefault();
-    defaultConf.set(el::Level::Global, el::ConfigurationType::Format, "[%datetime] %level %fbase:%line <<%func>> : %msg");
+    defaultConf.set(el::Level::Global, el::ConfigurationType::Format, "[%datetime] %level %fbase:%line : %msg");
     defaultConf.set(el::Level::Global, el::ConfigurationType::ToFile, "false");
     defaultConf.set(el::Level::Global, el::ConfigurationType::ToStandardOutput, "true");
     el::Loggers::reconfigureLogger("default", defaultConf);
 }
 
-int Engine::initVideoSystem(Config *config)
+int Engine::initEngine()
 {
-    video->createWindow(config);
+    LOG_Init();
+    TTF_Init();
+}
+
+void Engine::initSystems(std::map<std::string, Config> config_map)
+{
+    video = new Video(config_map["video"]);
 }
 
 void Engine::push_screen(Screen *screen)

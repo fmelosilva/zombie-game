@@ -1,5 +1,7 @@
 #include "AssetManager.hpp"
 
+#include <stdexcept>
+
 #include "assets/FontAsset.hpp"
 #include "assets/SoundAsset.hpp"
 #include "assets/SpriteAsset.hpp"
@@ -63,5 +65,8 @@ Asset *AssetManager::createAssetFromString(std::string asset_type)
 
 Asset *AssetManager::getAssetByID(std::string id)
 {
+    if(asset_map.count(id) == 0)
+        throw std::invalid_argument("Asset *AssetManager::getAssetByID(std::string id) | error: " + id + " does not exist");
+
     return asset_map[id];
 }

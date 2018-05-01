@@ -25,6 +25,7 @@ add_executable(
     src/engine/AssetManager.cpp
     src/engine/screens/menu/MenuScreen.cpp
     src/engine/utils/easylogging++.cpp
+    src/engine/utils/Config.cpp
     src/game/main.cpp
     src/game/screens/menu/MainMenu.cpp
 )
