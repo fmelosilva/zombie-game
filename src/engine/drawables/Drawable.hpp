@@ -1,12 +1,12 @@
-#ifndef ELEMENT_HPP_DEFINED
-#define ELEMENT_HPP_DEFINED
+#ifndef DRAWABLE_HPP_DEFINED
+#define DRAWABLE_HPP_DEFINED
 
 #include "../assets/Asset.hpp"
 
 #include <string>
 #include "SDL2/SDL.h"
 
-class Element
+class Drawable
 {
   public:
     void setPosition(SDL_Point position);
@@ -29,4 +29,4 @@ class Element
     Asset *asset;
 };
 
-#endif /* ELEMENT_HPP_DEFINED */
+#endif /* DRAWABLE_HPP_DEFINED */

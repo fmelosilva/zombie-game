@@ -4,7 +4,7 @@
 #include <SDL2/SDL.h>
 #include "../utils/Config.hpp"
 #include "../utils/easylogging++.hpp"
-#include "../elements/Element.hpp"
+#include "../drawables/Drawable.hpp"
 
 
 class Video
@@ -13,7 +13,7 @@ class Video
     Video(Config config);
     ~Video();
     SDL_Renderer *getRenderer();
-    void render(Element *element);
+    void render(Drawable *drawable);
     void updateScreen();
 
   private:

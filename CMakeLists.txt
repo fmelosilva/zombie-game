@@ -13,13 +13,13 @@ set(SDL2_IMAGE_LIBRARY /usr/local/lib/libSDL2_image.so)
 set(SDL2_TTF_LIBRARY /usr/local/lib/libSDL2_ttf.so)
 
 file(GLOB ASSETS_SRC "src/engine/assets/*.cpp")
-file(GLOB ELEMENTS_SRC "src/engine/elements/*.cpp")
-file(GLOB SYSTEMS_SRC "src/engine/systems/*.cpp")
+file(GLOB DRAWABLES_SRC "src/engine/drawables/*.cpp")
+file(GLOB SYSTEMS_SRC "src/engine/IO/*.cpp")
 
 add_executable(
     ${PROJECT_NAME}
     ${ASSETS_SRC}
-    ${ELEMENTS_SRC}
+    ${DRAWABLES_SRC}
     ${SYSTEMS_SRC}
     src/engine/Engine.cpp
     src/engine/AssetManager.cpp

@@ -16,7 +16,6 @@ To build standalone version:
 
     cmake . && make
 
-
 ## Author ##
 
 * [Filipe Melo](https://github.com/fms6)

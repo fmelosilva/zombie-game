@@ -25,7 +25,7 @@ Video::Video(Config config)
     if (!this->window)
         throw std::runtime_error("Window could not be created. SDL_Error: " + std::string(SDL_GetError()));
 
-    LOG(DEBUG) << "A new window was created";
+    LOG(DEBUG) << "New window created";
 
     this->renderer = SDL_CreateRenderer(this->window, -1, SDL_RENDERER_ACCELERATED);
     SDL_RenderSetLogicalSize(this->renderer, config.getInt("width"), config.getInt("height"));
@@ -39,7 +39,7 @@ SDL_Renderer *Video::getRenderer()
     return this->renderer;
 }
 
-void Video::render(Element *element)
+void Video::render(Drawable *drawable)
 {
     SDL_Rect Message_rect;
     Message_rect.x = 0;  //controls the rect's x coordinate
@@ -49,7 +49,7 @@ void Video::render(Element *element)
 
     SDL_RenderCopy(
         this->renderer,
-        element->getTexture(),
+        drawable->getTexture(),
         NULL,
         &Message_rect);
 }

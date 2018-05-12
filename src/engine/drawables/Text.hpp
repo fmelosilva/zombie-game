@@ -1,12 +1,12 @@
 #ifndef TEXT_HPP_DEFINED
 #define TEXT_HPP_DEFINED
 
-#include "Element.hpp"
+#include "Drawable.hpp"
 #include "../assets/FontAsset.hpp"
 
 #include <string>
 
-class Text : public Element
+class Text : public Drawable
 {
   public:
     Text(std::string text);
